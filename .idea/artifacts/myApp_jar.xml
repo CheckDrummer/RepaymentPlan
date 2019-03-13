@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="myApp:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/myApp_jar</output-path>
+    <root id="root">
+      <element id="module-output" name="myApp" />
+    </root>
+  </artifact>
+</component>
