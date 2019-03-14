@@ -64,7 +64,7 @@ public class RepaymentPlanServiceImpl implements RepaymentPlanService {
     }
 
 
-    static private BigDecimal calculateAnnuity (LoanDetails loanDetails) {
+    private static BigDecimal calculateAnnuity (LoanDetails loanDetails) {
 
         MathContext mc = new MathContext(10, RoundingMode.HALF_UP);
         BigDecimal nominalRatePercentage = loanDetails.getNominalRate().divide(ONE_HUNDRED).divide(TWELVE,mc);
@@ -85,7 +85,7 @@ public class RepaymentPlanServiceImpl implements RepaymentPlanService {
     }
 
 
-    static private BigDecimal calculateInterest (LoanDetails loanDetails) {
+    private static BigDecimal calculateInterest (LoanDetails loanDetails) {
 
         MathContext mc = new MathContext(10, RoundingMode.HALF_UP);
         BigDecimal nominalRatePercentage = loanDetails.getNominalRate().divide(ONE_HUNDRED);
