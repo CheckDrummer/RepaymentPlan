@@ -34,11 +34,11 @@ public class RepaymentPlan implements Serializable {
         this.date = date;
     }
 
-    public BigDecimal getannuity() {
+    public BigDecimal getAnnuity() {
         return annuity;
     }
 
-    public void setannuity(BigDecimal annuity) {
+    public void setAnnuity(BigDecimal annuity) {
         this.annuity = annuity;
     }
 

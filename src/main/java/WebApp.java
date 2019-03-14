@@ -1,12 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.time.LocalDateTime;
-import java.util.Map;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -51,7 +45,6 @@ public class WebApp {
 
                 try {
                     LoanDetails loanDetails = mapper.readValue(req.getReader(), LoanDetails.class);
-                    validateLoanDetails(loanDetails);
                     resp.setContentType("application/json");
                     out.print(mapper.writeValueAsString(repaymentPlanService.calculatePlan(loanDetails)));
                 } catch (JsonGenerationException | JsonMappingException e) {
@@ -78,18 +71,5 @@ public class WebApp {
 
         tomcat.start();
         tomcat.getServer().await();
-    }
-
-    private static void validateLoanDetails (LoanDetails loanDetails) {
-        if (loanDetails.getNominalRate().compareTo(BigDecimal.ZERO) < 0
-                || loanDetails.getNominalRate() == null
-                || loanDetails.getLoanAmount().compareTo(BigDecimal.ZERO) < 0
-                || loanDetails.getLoanAmount() == null
-                || loanDetails.getDuration() < 0
-                || loanDetails.getDuration() == 0
-                || loanDetails.getStartDate() == null
-                || loanDetails.getStartDate().isBefore(LocalDateTime.now())) {
-            throw new ValidationException("Incorrect input data");
-        }
     }
 }
